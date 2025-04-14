@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+   Detalle del Autor: {{ autor.nombre }}
+{% endblock titulo %}
+
+{% block contenido %}
+<div class="d-flex justify-content-center mt-4">
+  <div class="card shadow" style="width: 24rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{ autor.nombre }}</h5>
+      <p class="card-text">
+        <strong>Nacionalidad:</strong> {{ autor.get_nacionalidad_display }}<br>
+        <strong>Fecha de Nacimiento:</strong> {{ autor.fecha_nacimiento }}<br>
+        <strong>Fecha de Fallecimiento:</strong> {{ autor.fecha_fallecimiento|default:"-" }}<br>
+        <strong>Activo:</strong> {{ autor.activo|yesno:"Sí,No" }}<br>
+        <strong>Creado:</strong> {{ autor.creado }}<br>
+        <strong>Última modificación:</strong> {{ autor.modificado }}
+      </p>
+      <a href="#" class="btn btn-primary">ID: {{ autor.id }}</a>
+    </div>
+  </div>
+</div>
+{% endblock contenido %}

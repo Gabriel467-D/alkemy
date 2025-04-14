@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+    Todos los Autores
+{% endblock titulo %}
+
+{% block contenido %}
+<h2>Listado Completo de Autores</h2>
+
+<table class="table table-striped table-hover table-bordered table-sm table-dark">
+    <thead>
+        <tr>
+            <th>ir</th>
+            <th>Nombre</th>
+            <th>Nacionalidad</th>
+            <th>Fecha de Nacimiento</th>
+            <th>Fecha de Fallecimiento</th>
+            <th>Activo</th>
+            <th>Creado</th>
+            <th>Modificado</th>
+            <th>Borrar autor</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for autor in autores %}
+            <tr>
+                <th scope="row">
+                    <a href="{% url 'app_autores:detalle_autor' autor.id %}">
+                      <img src="{%  static 'img/ir.png' %}" width="32px">
+                    </a>
+                  </th>
+            
+            <td>{{ autor.nombre }}</td>
+            <td>{{ autor.get_nacionalidad_display }}</td>
+            <td>{{ autor.fecha_nacimiento }}</td>
+            <td>{{ autor.fecha_fallecimiento|default:"—" }}</td>
+            <td>
+                <a href="{% url 'app_autores:modificar_activo' autor.id %}">
+                {% if autor.activo %}
+                    <img src="{% static 'img/OK.png' %}" width="32px">
+                {% else %}
+                    <img src="{% static 'img/NOK.png' %}" width="32px">
+                {% endif %}
+                 </a>
+            </td>
+            <td>{{ autor.creado }}</td>
+            <td>{{ autor.modificado }}</td>
+            <td>
+                <a href="{% url 'app_autores:borrar_autor' autor.id %}" onclick="return confirm('¿Estás seguro de que deseas borrar este autor?');">
+                    <img src="{% static 'img/basura.png' %}" width="32px">
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock contenido %}

@@ -1,0 +1,108 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {% block titulo %}
+      Proyecto Integrador con templates
+      {% endblock titulo %}
+    </title>
+
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color:rgb(217, 217, 231);
+      }
+      .navbar {
+        background-color:rgb(184, 103, 170);
+      }
+      .navbar-brand {
+        font-weight: 600;
+      }
+      .alert {
+        margin-top: 20px;
+        font-weight: 500;
+      }
+      h1 {
+        color: #343a40;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">Proyecto Integrador</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link btn btn-lg btn-outline-primary custom-btn" href="/admin/">
+                <i class="bi bi-person-lock"></i> Admin
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn btn-lg btn-outline-primary custom-btn" href="{% url 'app_autores:all_autores' %}">
+                <i class="bi bi-person-lines-fill"></i> Todos los Autores
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn btn-lg btn-outline-success custom-btn me-2" href="{% url 'app_autores:lista_activos' %}">
+                <i class="bi bi-person-check"></i> Activos
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link btn btn-lg btn-outline-danger custom-btn" href="{% url 'app_autores:lista_inactivos' %}">
+                <i class="bi bi-person-x"></i> Inactivos
+              </a>
+            </li>
+          </ul>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <div class="container my-5">
+      <div class="mb-4">
+        <h1>Proyecto Integrador con templates</h1>
+      </div>
+
+      <!-- Alertas -->
+      <div class="alert alert-warning" role="alert">
+        <h2>Django Fullstack</h2>
+      </div>
+
+
+      {% block contenido %}
+      {% endblock contenido %}
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <script src="{% static 'main.js' %}"></script>
+  </body>
+</html>

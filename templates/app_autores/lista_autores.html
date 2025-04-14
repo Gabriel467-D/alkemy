@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autores {{ titulo }}</title>
+    <!-- Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center">Listado de Autores {{ titulo|title }}</h1>
+
+        <!-- Botón para volver al inicio -->
+        <div class="mb-3">
+            <a href="/autores/" class="btn btn-outline-secondary">
+                <i class="bi bi-house-fill"></i> Inicio
+            </a>
+        </div>
+
+        <!-- Tabla de autores -->
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Nacionalidad</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Fecha de Fallecimiento</th>
+                    <th>Creado</th>
+                    <th>Modificado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for autor in autores %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'app_autores:detalle_autor' autor.id %}">
+                                {{ autor.nombre }}
+                            </a>
+                        </td>
+                        <td>{{ autor.get_nacionalidad_display }}</td>
+                        <td>{{ autor.fecha_nacimiento }}</td>
+                        <td>{{ autor.fecha_fallecimiento|default:"-" }}</td>
+                        <td>{{ autor.creado }}</td>
+                        <td>{{ autor.modificado }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center">No hay autores {{ titulo }}.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Scripts Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
