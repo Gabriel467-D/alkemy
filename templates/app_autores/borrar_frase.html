@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block titulo %}Confirmación de eliminación{% endblock titulo %}
+
+{% block contenido %}
+  <h2>¿Estás seguro que deseas borrar esta frase?</h2>
+  <p><strong>{{ object.frase }}</strong></p>
+  <form method="post">
+    {% csrf_token %}
+    <input type="submit" value="Confirmar" class="btn btn-danger">
+    <a href="{% url 'app_autores:listar_frases' %}" class="btn btn-secondary">Cancelar</a>
+  </form>
+{% endblock contenido %}

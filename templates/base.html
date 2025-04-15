@@ -45,7 +45,8 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-        <a class="navbar-brand" href="#">Proyecto Integrador</a>
+        <a class="navbar-brand btn btn-outline-light btn-sm" href="{% url 'app_autores:presentacion' %}"> 
+          Proyecto Integrador</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -55,24 +56,34 @@
               <a class="nav-link btn btn-lg btn-outline-primary custom-btn" href="/admin/">
                 <i class="bi bi-person-lock"></i> Admin
               </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link btn btn-lg btn-outline-primary custom-btn" href="{% url 'app_autores:all_autores' %}">
-                <i class="bi bi-person-lines-fill"></i> Todos los Autores
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link btn btn-lg btn-outline-success custom-btn me-2" href="{% url 'app_autores:lista_activos' %}">
-                <i class="bi bi-person-check"></i> Activos
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link btn btn-lg btn-outline-danger custom-btn" href="{% url 'app_autores:lista_inactivos' %}">
-                <i class="bi bi-person-x"></i> Inactivos
-              </a>
-            </li>
-          </ul>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle btn btn-lg btn-outline-primary custom-btn" href="#" id="autoresDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="bi bi-person-lines-fill"></i> Autores
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="autoresDropdown">
+                  <li>
+                    <a class="dropdown-item" href="{% url 'app_autores:all_autores' %}">
+                      <i class="bi bi-person-lines-fill"></i> Todos los Autores
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="{% url 'app_autores:lista_activos' %}">
+                      <i class="bi bi-person-check"></i> Activos
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="{% url 'app_autores:lista_inactivos' %}">
+                      <i class="bi bi-person-x"></i> Inactivos
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="{% url 'app_autores:listar_frases' %}">
+                      <i class="bi bi-person-x"></i> Frases
+                    </a>
+                  </li>
+              </ul>
+              </li>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="#">Action</a></li>
                 <li><a class="dropdown-item" href="#">Another action</a></li>
                 <li><hr class="dropdown-divider"></li>

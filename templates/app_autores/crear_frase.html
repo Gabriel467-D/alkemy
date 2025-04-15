@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+  {% if form.instance.pk %}
+    Editar Frase
+  {% else %}
+    Crear Nueva Frase
+  {% endif %}
+{% endblock titulo %}
+
+{% block contenido %}
+  <h2>
+    {% if form.instance.pk %}
+      Editar frase existente
+    {% else %}
+      Crear una nueva Frase
+    {% endif %}
+  </h2>
+
+  <form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Guardar">
+</form>
+{% endblock contenido %}
