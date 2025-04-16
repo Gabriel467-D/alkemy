@@ -1,0 +1,45 @@
+  {% extends "base.html" %}
+
+  {% block titulo %}Listado de Frases{% endblock titulo %}
+
+  {% block contenido %}
+  <div class="d-flex flex-wrap gap-2 mb-4">
+      <a href="{% url 'app_frases:listar_frases' %}" class="btn btn-dark btn-sm">
+        <i class="bi bi-card-list"></i> Todas las frases
+      </a>
+      <a href="{% url 'app_frases:frases_visibles' %}" class="btn btn-success btn-sm">
+        <i class="bi bi-eye-fill"></i> Frases visibles
+      </a>
+      <a href="{% url 'app_frases:frases_no_visibles' %}" class="btn btn-secondary btn-sm">
+        <i class="bi bi-eye-slash-fill"></i> Frases no visibles
+      </a>
+      <a href="{% url 'app_frases:crear_frase' %}" class="btn btn-primary btn-sm">
+        <i class="bi bi-plus-circle-fill"></i> Crear frase
+      </a>
+    </div>
+
+  <div class="row">
+      {% for frase in frases %}
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ frase.autor }}</h5>
+              <p class="card-text">{{ frase.frase }}</p>
+              <p class="text-muted"><small>{{ frase.fecha_frase }}</small></p>
+    
+              <!-- Botones de acción -->
+              <div class="d-flex justify-content-between mt-3">
+                <a href="{% url 'app_frases:editar_frase' pk=frase.pk %}" class="btn btn-sm btn-warning">
+                  <i class="bi bi-pencil-square"></i> Editar
+                </a>
+                <a href="{% url 'app_frases:borrar_frase' pk=frase.pk %}" class="btn btn-sm btn-danger">
+                  <i class="bi bi-trash"></i> Borrar
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    </div>
+  {% endblock contenido %}

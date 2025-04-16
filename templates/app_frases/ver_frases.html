@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Frases de {{ autor.nombre }}
+{% endblock %}
+
+{% block contenido %}
+    <h2>Frases de {{ autor.nombre }}</h2>
+
+    {% if frases %}
+        <ul>
+            {% for frase in frases %}
+                <li>
+                    <p><strong>Frase:</strong> {{ frase.frase }}</p>
+                    <p><small><strong>Fecha:</strong> {{ frase.fecha_frase }}</small></p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay frases disponibles para este autor.</p>
+    {% endif %}
+
+    <a href="{% url 'app_autores:detalle_autor' autor.id %}" class="btn btn-primary">
+        Volver al detalle del autor
+    </a>
+{% endblock %}

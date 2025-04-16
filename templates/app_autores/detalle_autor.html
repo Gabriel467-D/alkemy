@@ -11,6 +11,7 @@
     <p><strong>Nacionalidad:</strong> {{ autor.get_nacionalidad_display }}</p>
     <p><strong>Fecha de nacimiento:</strong> {{ autor.fecha_nacimiento }}</p>
     <p><strong>Fecha de fallecimiento:</strong> {{ autor.fecha_fallecimiento|default:"-" }}</p>
+    <p><strong>Frases:</strong> {{ cantidad_frases }}</p>
     <p><strong>Activo:</strong>
         {% if autor.activo %}
             <img src="{% static 'img/OK.png' %}" width="24px">

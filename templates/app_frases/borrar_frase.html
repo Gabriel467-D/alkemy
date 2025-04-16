@@ -8,6 +8,6 @@
   <form method="post">
     {% csrf_token %}
     <input type="submit" value="Confirmar" class="btn btn-danger">
-    <a href="{% url 'app_autores:listar_frases' %}" class="btn btn-secondary">Cancelar</a>
+    <a href="{% url 'app_frases:listar_frases' %}" class="btn btn-secondary">Cancelar</a>
   </form>
 {% endblock contenido %}
