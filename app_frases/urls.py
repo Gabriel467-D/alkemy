@@ -19,4 +19,5 @@ urlpatterns = [
         path('editar/<int:pk>/', FraseUpdateView.as_view(), name='editar_frase'),
         path('borrar/<int:pk>/', FraseDeleteView.as_view(), name='borrar_frase'),
         path('ver_frases_autor/<int:autor_id>/', views.Frase_autor, name='ver_frases_autor'),
+        path('listar_json/', views.frase_json, name='frases_json'),
        ]

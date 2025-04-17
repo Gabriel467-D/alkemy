@@ -48,3 +48,8 @@ def Frase_autor(request, autor_id):
         'autor': autor,
         'frases': frases
     })
+
+def frase_json(request):        
+    frases = get_list_or_404(Frase)
+    frases_json = serialize('json', frases)
+    return JsonResponse(frases_json, safe=False) 

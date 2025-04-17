@@ -1,5 +1,6 @@
 from django.urls import path
-from . import views
+from django.contrib.auth.views import LoginView, LogoutView
+from . import views 
 from.views import( AutorCreateView,AutorUpdateView
                     )
 
@@ -7,6 +8,8 @@ app_name = 'app_autores'
 
 urlpatterns = [
     path('', views.presentacion, name='presentacion'),
+    path('login/', LoginView.as_view(template_name='Login/login.html'), name='login'),
+    path('logout/', LogoutView.as_view(next_page='app_autores:presentacion'), name='logout'),
     path('activos/', views.lista_autores_activos, name='lista_activos'),
     path('inactivos/', views.lista_autores_inactivos, name='lista_inactivos'),
     path('listar_json/', views.lista_autores_json, name='listar_json'),
@@ -17,3 +20,4 @@ urlpatterns = [
     path('crear/', views.AutorCreateView.as_view(), name='crear_autor'),
     path('editar/<int:pk>/', AutorUpdateView.as_view(), name='modificar_autor'),
 ]
+        

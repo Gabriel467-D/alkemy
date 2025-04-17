@@ -5,8 +5,15 @@
 {% endblock %}
 
 {% block contenido %}
-    <h1>Bienvenidos a la aplicacion App Autores</h1>
-    <h2>Este sistema registra autores y sus frases más famosas.</h2>
+    {% if user.is_authenticated %}
+        <p>Hola, {{ user.username }} | 
+           <a href="{% url 'app_autores:login' %}">Cerrar sesión</a>
+        </p>
+    {% else %}
+        <p><a href="{% url 'app_autores:logout' %}">Iniciar sesión</a></p>
+    {% endif %}
+
+    <h1>Bienvenidos a la aplicación App Autores</h1>
+    <h3>Este sistema registra autores y sus frases más famosas.</h3>
     <h3>Desarrollado por Emanuel Diaz</h3>
-    
 {% endblock %}

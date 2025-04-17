@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Estilos personalizados -->
     <link rel="stylesheet" href="{% static 'styles.css' %}">
@@ -22,10 +22,10 @@
     <style>
       body {
         font-family: 'Poppins', sans-serif;
-        background-color:rgb(217, 217, 231);
+        background-color: rgb(217, 217, 231);
       }
       .navbar {
-        background-color:rgb(184, 103, 170);
+        background-color: rgb(184, 103, 170);
       }
       .navbar-brand {
         font-weight: 600;
@@ -42,52 +42,34 @@
   </head>
   <body>
 
+    {% if request.resolver_match.url_name != 'login' %}
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
         <a class="navbar-brand btn btn-outline-light btn-sm" href="{% url 'app_autores:presentacion' %}"> 
-          Proyecto Integrador</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          Proyecto Integrador
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
           <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-link btn btn-lg btn-outline-primary custom-btn" href="/admin/">
                 <i class="bi bi-person-lock"></i> Admin
               </a>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle btn btn-lg btn-outline-primary custom-btn" href="#" id="autoresDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="bi bi-person-lines-fill"></i> Autores
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="autoresDropdown">
-                  <li>
-                    <a class="dropdown-item" href="{% url 'app_autores:all_autores' %}">
-                      <i class="bi bi-person-lines-fill"></i> Todos los Autores
-                    </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="{% url 'app_autores:lista_activos' %}">
-                      <i class="bi bi-person-check"></i> Activos
-                    </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="{% url 'app_autores:lista_inactivos' %}">
-                      <i class="bi bi-person-x"></i> Inactivos
-                    </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="{% url 'app_frases:listar_frases' %}">
-                      <i class="bi bi-person-x"></i> Frases
-                    </a>
-                  </li>
-              </ul>
-              </li>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle btn btn-lg btn-outline-primary custom-btn" href="#" id="autoresDropdown" role="button" data-bs-toggle="dropdown">
+                <i class="bi bi-person-lines-fill"></i> Autores
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="autoresDropdown">
+                <li><a class="dropdown-item" href="{% url 'app_autores:all_autores' %}">Todos los Autores</a></li>
+                <li><a class="dropdown-item" href="{% url 'app_autores:lista_activos' %}">Activos</a></li>
+                <li><a class="dropdown-item" href="{% url 'app_autores:lista_inactivos' %}">Inactivos</a></li>
+                <li><a class="dropdown-item" href="{% url 'app_frases:listar_frases' %}">Frases</a></li>
+                <li><a class="dropdown-item" href="{% url 'app_frases:frases_json' %}">Frases json</a></li>
               </ul>
             </li>
           </ul>
@@ -95,25 +77,16 @@
       </div>
     </nav>
 
-    <!-- Main content -->
+    {% endif %}
+
+    <!-- Contenido principal -->
     <div class="container my-5">
-      <div class="mb-4">
-        <h1>Proyecto Integrador con templates</h1>
-      </div>
-
-      <!-- Alertas -->
-      <div class="alert alert-warning" role="alert">
-        <h2>Django Fullstack</h2>
-      </div>
-
-
       {% block contenido %}
       {% endblock contenido %}
-
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{% static 'main.js' %}"></script>
   </body>
 </html>
